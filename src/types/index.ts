@@ -18,6 +18,7 @@ export type TodoContextType = {
   loadingTodo?: number;
   error: string;
   addTodo?: (text: string) => Promise<void>;
+  deleteTodo?: (id: number) => Promise<void>;
   fetchTodos?: () => Promise<void>;
   toggleTodoComplete?: (todoId: number, isCompleted: boolean) => Promise<void>;
 };

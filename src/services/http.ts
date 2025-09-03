@@ -18,3 +18,5 @@ export const getTodoById = (id: string) => axiosInstance.get(`/todos/${id}`);
 
 export const addTodo = (todo: string): Promise<AxiosResponse<Todo>> =>
   axiosInstance.post(`/todos/add`, { todo, userId: 1 });
+
+export const removeTodo = (id: number) => axiosInstance.delete(`/todos/${id}`);

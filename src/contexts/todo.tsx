@@ -1,6 +1,11 @@
 import { isAxiosError } from "axios";
 import React, { createContext, useEffect, useMemo, useState } from "react";
-import { addTodo as add, completedTodoById, getTodos } from "../services/http";
+import {
+    addTodo as add,
+    completedTodoById,
+    getTodos,
+    removeTodo,
+} from "../services/http";
 import { Todo, TodoContextType } from "../types";
 
 export const TodoContext = createContext<TodoContextType>({
@@ -78,6 +83,24 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const deleteTodo = async (id: number) => {
+    try {
+      //   setLoading(true);
+      await removeTodo(id);
+      setTodos((previousTodos) =>
+        previousTodos.filter((previousTodo) => previousTodo.id !== id)
+      );
+    } catch (error) {
+      if (isAxiosError(error)) {
+        setError(error.message);
+      } else {
+        setError("Something went wrong");
+      }
+    } finally {
+      //   setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -89,6 +112,7 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
       loadingTodo,
       error,
       addTodo,
+      deleteTodo,
       fetchTodos,
       toggleTodoComplete,
     }),
