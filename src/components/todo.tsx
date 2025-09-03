@@ -23,7 +23,7 @@ const Todo = ({ id, todo, completed }: TodoType) => {
       activeOpacity={0.7}
       style={[styles.container, completed && styles.completedContainer]}
       onPress={toggleHandler}
-      disabled={isLoading} // prevent multiple clicks while loading
+      disabled={isLoading}
     >
       <View style={styles.indicatorContainer}>
         {isLoading ? (
