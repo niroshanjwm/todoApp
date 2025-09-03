@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -7,15 +7,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Modal from "../components/modal";
 import Todo from "../components/todo";
 import { TodoContext } from "../contexts/todo";
 
 const ToDoListScreen = () => {
+  const [showAddModal, setShowAddModal] = useState(false);
   const { todos, loading, error } = useContext(TodoContext);
 
   const handleAddTodo = () => {
-    // Here you can open a modal or navigate to a new screen to add a todo
-    console.log("Add new todo");
+    setShowAddModal(true);
+  };
+
+  const onApplyHandler = () => {
+    alert("hi");
   };
 
   if (loading) {
@@ -36,20 +41,28 @@ const ToDoListScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>ToDos</Text>
-      <FlatList
-        data={todos}
-        keyExtractor={(item) => item.todo}
-        renderItem={({ item }) => <Todo {...item} />}
-        contentContainerStyle={{ paddingBottom: 80 }}
-      />
+    <>
+      <Modal
+        visible={showAddModal}
+        onClose={() => setShowAddModal((showAddModal) => !showAddModal)}
+        onApply={() => onApplyHandler()}
+      >
+        <Text>Hi</Text>
+      </Modal>
+      <View style={styles.container}>
+        <Text style={styles.header}>ToDos</Text>
+        <FlatList
+          data={todos}
+          keyExtractor={(item) => item.todo}
+          renderItem={({ item }) => <Todo {...item} />}
+          contentContainerStyle={{ paddingBottom: 80 }}
+        />
 
-      {/* Floating + Button */}
-      <TouchableOpacity style={styles.fab} onPress={handleAddTodo}>
-        <Text style={styles.fabText}>+</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={styles.fab} onPress={() => handleAddTodo()}>
+          <Text style={styles.fabText}>+</Text>
+        </TouchableOpacity>
+      </View>
+    </>
   );
 };
 
