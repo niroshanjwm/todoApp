@@ -16,4 +16,5 @@ export const completedTodoById = (id: number, completed: boolean) =>
 
 export const getTodoById = (id: string) => axiosInstance.get(`/todos/${id}`);
 
-export const addTodo = (todo: Todo) => axiosInstance.post(`/todos/add`, todo);
+export const addTodo = (todo: string): Promise<AxiosResponse<Todo>> =>
+  axiosInstance.post(`/todos/add`, { todo, userId: 1 });

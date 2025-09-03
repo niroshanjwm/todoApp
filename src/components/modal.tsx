@@ -32,18 +32,11 @@ const Modal: React.FC<ModalProps> = ({
     >
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
-          {/* Top-right Close button */}
           <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
             <Text style={styles.closeIconText}>✕</Text>
           </TouchableOpacity>
-
-          {/* Title */}
           {title && <Text style={styles.title}>{title}</Text>}
-
-          {/* Content */}
           <View style={styles.content}>{children}</View>
-
-          {/* Apply button */}
           {onApply && (
             <TouchableOpacity style={styles.applyBtn} onPress={onApply}>
               <Text style={styles.applyBtnText}>Apply</Text>
