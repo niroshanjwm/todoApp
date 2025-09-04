@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  SafeAreaView,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View,
+  TouchableOpacity
 } from "react-native";
 import Input from "../components/input";
 import Modal from "../components/modal";
@@ -37,18 +37,18 @@ const ToDoListScreen = () => {
 
   if (loading) {
     return (
-      <View style={styles.center}>
+      <SafeAreaView style={styles.center}>
         <ActivityIndicator size="large" />
         <Text>Loading todos...</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
   if (error) {
     return (
-      <View style={styles.center}>
+      <SafeAreaView style={styles.center}>
         <Text style={{ color: "red" }}>{error}</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
@@ -67,7 +67,7 @@ const ToDoListScreen = () => {
         />
       </Modal>
 
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.header}>ToDos</Text>
         <FlatList
           data={todos}
@@ -79,7 +79,7 @@ const ToDoListScreen = () => {
         <TouchableOpacity style={styles.fab} onPress={handleAddTodo}>
           <Text style={styles.fabText}>+</Text>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     </>
   );
 };

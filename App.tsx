@@ -6,6 +6,9 @@ import ToDoListScreen from "./src/pages/todoList";
 
 const Stack = createNativeStackNavigator();
 
+// The expo link
+// https://snack.expo.dev/@niroshanj/github.com-niroshanjwm-todoapp?platform=ios
+
 export default function App() {
   return (
     <TodoProvider>
