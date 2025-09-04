@@ -1,22 +1,22 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import { Todo, TodoResponse } from "../types";
+import { Todo } from "../types";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: "https://dummyjson.com/",
+  baseURL: "http://localhost:8080/",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export const getTodos = (): Promise<AxiosResponse<TodoResponse>> =>
-  axiosInstance.get<TodoResponse>("/todos");
+export const getTodos = (): Promise<AxiosResponse<Todo[]>> =>
+  axiosInstance.get<Todo[]>("/todo");
 
 export const completedTodoById = (id: number, completed: boolean) =>
-  axiosInstance.patch(`/todos/${id}`, { completed });
+  axiosInstance.patch(`/todo/${id}`, { completed });
 
-export const getTodoById = (id: string) => axiosInstance.get(`/todos/${id}`);
+export const getTodoById = (id: string) => axiosInstance.get(`/todo/${id}`);
 
 export const addTodo = (todo: string): Promise<AxiosResponse<Todo>> =>
-  axiosInstance.post(`/todos/add`, { todo, userId: 1 });
+  axiosInstance.post(`/todo`, { todo, userId: 1 });
 
-export const removeTodo = (id: number) => axiosInstance.delete(`/todos/${id}`);
+export const removeTodo = (id: number) => axiosInstance.delete(`/todo/${id}`);

@@ -1,10 +1,10 @@
 import { isAxiosError } from "axios";
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import {
-    addTodo as add,
-    completedTodoById,
-    getTodos,
-    removeTodo,
+  addTodo as add,
+  completedTodoById,
+  getTodos,
+  removeTodo,
 } from "../services/http";
 import { Todo, TodoContextType } from "../types";
 
@@ -47,7 +47,7 @@ export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       setLoading(true);
       const todo = await getTodos();
-      setTodos(todo.data.todos);
+      setTodos(todo.data);
     } catch (error) {
       if (isAxiosError(error)) {
         setError(error.message);
