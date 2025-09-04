@@ -22,3 +22,7 @@ export type TodoContextType = {
   fetchTodos?: () => Promise<void>;
   toggleTodoComplete?: (todoId: number, isCompleted: boolean) => Promise<void>;
 };
+
+export type AuthenticationResponse = {
+  accessToken: string;
+};
