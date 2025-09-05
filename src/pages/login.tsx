@@ -19,8 +19,8 @@ import { authentication } from "../services/http";
 const LoginScreen = () => {
   const navigation = useNavigation();
   const { login, isLoggedIn } = useAuth();
-  const [username, setUsername] = useState("niroshan");
-  const [password, setPassword] = useState("test@123");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -29,7 +29,7 @@ const LoginScreen = () => {
     try {
       setLoading(true);
       const data = await authentication(username, password);
-      const accessToken = data.data.accessToken;
+      const { accessToken } = data.data;
       // Localstorage as temporary token storage
       localStorage.setItem("accessToken", accessToken);
       login();
